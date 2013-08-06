@@ -1,0 +1,384 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"entry",
+				"Entry"
+			],
+			[
+				"gru",
+				"groupedDates"
+			],
+			[
+				"_getentriesyear",
+				"_getEntriesYearsAndMonths"
+			],
+			[
+				"en",
+				"Entry"
+			],
+			[
+				"para",
+				"params"
+			],
+			[
+				"re",
+				"req"
+			],
+			[
+				"red",
+				"renderParams"
+			],
+			[
+				"sequ",
+				"Sequelize"
+			],
+			[
+				"tar",
+				"targetMethod"
+			],
+			[
+				"arg",
+				"arguments"
+			],
+			[
+				"pro",
+				"proto	Prototype"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "Packages/JSLint/JSLint.sublime-build",
+	"command_palette":
+	{
+		"height": 147.0,
+		"selected_items":
+		[
+			[
+				"user",
+				"Preferences: Settings - User"
+			],
+			[
+				"key",
+				"Preferences: Key Bindings - Default"
+			],
+			[
+				"user ",
+				"Preferences: Settings - User"
+			],
+			[
+				"keyb",
+				"Preferences: Key Bindings - Default"
+			],
+			[
+				"users",
+				"Permute Lines: Reverse"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"settings",
+				"Preferences: Settings - Default"
+			],
+			[
+				"ej",
+				"EJS: <% and %>"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"jsli",
+				"JSLint"
+			],
+			[
+				"jsl",
+				"JSLint"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			]
+		],
+		"width": 467.0
+	},
+	"console":
+	{
+		"height": 509.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/testuser/Dropbox/projects/events_calendar/feature_set.txt",
+		"/Users/testuser/coding/node/public/chat.js",
+		"/Users/testuser/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/testuser/Library/Application Support/Sublime Text 3/Packages/Default/Default (OSX).sublime-keymap",
+		"/Users/testuser/coding/node/views/index.html",
+		"/Users/testuser/coding/test.js",
+		"/Users/testuser/coding/tiny_blog/first/views/admin/login.ejs",
+		"/Users/testuser/coding/tiny_blog/first/public/javascripts/nicEdit.js",
+		"/Users/testuser/coding/tiny_blog/first/todos.txt",
+		"/Users/testuser/coding/tiny_blog/first/views/layout.ejs",
+		"/Users/testuser/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/Users/testuser/coding/tiny_blog/first/routes/blog.js",
+		"/Users/testuser/coding/tiny_blog/first/views/admin_layout.ejs",
+		"/Users/testuser/coding/tiny_blog/first/views/login.ejs",
+		"/Users/testuser/coding/tiny_blog/first/migrations/20130730002606-create_blog_table.js",
+		"/Users/testuser/coding/tiny_blog/first/config/config.json",
+		"/Users/testuser/coding/tiny_blog/first/package.json",
+		"/Users/testuser/coding/tiny_blog/first/routes/user.js",
+		"/Users/testuser/coding/tiny_blog/first/node_modules/sequelize/spec/assets/migrations/20111130161100-emptyMigration.js",
+		"/Users/testuser/coding/tiny_blog/first/node_modules/sequelize/lib/migration.js",
+		"/Users/testuser/coding/tiny_blog/first/app.js",
+		"/Users/testuser/Desktop/today.txt",
+		"/Users/testuser/coding/test.html",
+		"/Users/testuser/Library/Application Support/Sublime Text 3/Packages/User/JavaScript.sublime-settings"
+	],
+	"find":
+	{
+		"height": 38.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"line",
+			"inputl",
+			"getElementById",
+			"end",
+			"line",
+			"end",
+			", io = require('socket.io').listen(server);",
+			", server = require('http').createServer(app)",
+			"var app = require('express')()",
+			"undefined",
+			"entry",
+			"button",
+			"goto",
+			"gif",
+			"_getYearAndMonth",
+			"split",
+			"params",
+			"entires",
+			"/admin/",
+			"/admin",
+			"admin/",
+			"Entry.",
+			"entry",
+			"Entry",
+			"resRenderLayout",
+			"button",
+			"entires",
+			"\"",
+			"FontAwesome",
+			"font",
+			"otf",
+			"font",
+			"stylesheets/",
+			"stylesheets",
+			"/stylesheets",
+			"req",
+			"white",
+			"font",
+			"i",
+			"super",
+			"sub",
+			"Super",
+			"Sub",
+			"scroll",
+			"size"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 30.0
+	},
+	"input":
+	{
+		"height": 36.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 118.0
+	},
+	"project": "tiny_events.sublime-project",
+	"replace":
+	{
+		"height": 56.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"pack",
+				"package.json"
+			],
+			[
+				"packa",
+				"package.json"
+			],
+			[
+				"login",
+				"first/views/admin/login.ejs"
+			],
+			[
+				"todo",
+				"first/todos.txt"
+			],
+			[
+				"nic",
+				"first/public/javascripts/nicEdit.js"
+			],
+			[
+				"nicedit",
+				"first/public/javascripts/nicEdit.js"
+			],
+			[
+				"create",
+				"first/views/admin/create.ejs"
+			],
+			[
+				"list",
+				"first/views/admin/list.ejs"
+			],
+			[
+				"",
+				"first/views/admin/admin_layout.ejs"
+			],
+			[
+				"entry",
+				"first/models/entry.js"
+			],
+			[
+				"layout",
+				"first/views/layout.ejs"
+			],
+			[
+				"migrations",
+				"first/node_modules/sequelize/lib/migration.js"
+			],
+			[
+				"mig",
+				"first/node_modules/sequelize/spec/assets/migrations/20111130161100-emptyMigration.js"
+			],
+			[
+				"app",
+				"first/app.js"
+			],
+			[
+				"a",
+				"first/app.js"
+			],
+			[
+				"appjs",
+				"first/app.js"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"index",
+				"index"
+			]
+		],
+		"width": 665.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 194.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

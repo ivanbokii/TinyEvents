@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>jQuery Boilerplate</title>
+    <script type="text/javascript" src="..//bower_components/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="..//bower_components/underscore/underscore-min.js"></script>
+    <script src="../dist/tinyEvents.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <!--<script src="../dist/tinyEvents.js"></script>-->
+  </head>
+  <body>
+    <div id="element"></div>
+    <p>another shit</p>
+
+    <script>
+      $(function() {
+        $("#element").tinyEvents({
+          // propertyName: "a custom value"
+        });
+      });
+    </script>
+  </body>
+</html>
