@@ -1,0 +1,30 @@
+.calendar .days li {
+  width: 15px;
+  cursor: pointer;
+}
+
+.month {
+  cursor: pointer;
+}
+
+.year {
+  cursor: pointer;
+}
+
+.quick-month-picker {
+  width: 200px;
+  height: 30px;
+  display: none;
+
+  position: absolute;
+  border: 1px solid red;
+}
+
+.quick-year-picker {
+  width: 200px;
+  height: 30px;
+  display: none;
+
+  position: absolute;
+  border: 1px solid red;
+}
