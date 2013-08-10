@@ -55,9 +55,11 @@ module.exports = function(grunt) {
           "dist/tinyEvents.js": ["src/global.coffee"
                                 , "src/templates.coffee"
                                 , "src/utils.coffee"
-                                , "src/calendar.coffee"
+                                , "src/quick-picker.coffee"
                                 , "src/quick-month-picker.coffee"
                                 , "src/quick-year-picker.coffee"
+                                , "src/calendar.coffee"
+                                , "src/events.coffee"
                                 , "src/tinyEvents.coffee"]
         }
       }

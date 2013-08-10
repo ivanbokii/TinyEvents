@@ -13,6 +13,8 @@ do ($ = jQuery, window, document) ->
     property: "value"
 
   Calendar = $.fn.tinyEventsModules.Calendar
+  Events = $.fn.tinyEventsModules.Events
+  templates = $.fn.tinyEventsModules.templates
 
   # The actual plugin constructor
   class TinyEvents
@@ -23,17 +25,20 @@ do ($ = jQuery, window, document) ->
       @init()
 
     init: ->
-      #init calendar engine here
-      @calendar = new Calendar(@element)
+      #todo ivanbokii combine handlers
+      @_render()
 
-    _switchDate: (event) =>
-      #get current date
-      #check if current date is the end of the month
-      #if no -> change current date to the new one
-      #if yes -> check that current month is the last one
-      #if no -> change month and set current date to the first date
-      #if yes -> change year, month and date
+      @events = new Events(@element, @options.events)
 
+      #events handlers for calendar
+      handlers = {}
+      handlers.onDateChange = @events.onDateChange
+
+      @calendar = new Calendar(@element, handlers)
+
+    #renders template for the plugin
+    _render: ->
+      $(templates.tinyEvents).appendTo($(@element))
 
   # A really lightweight plugin wrapper around the constructor,
   # preventing against multiple instantiations

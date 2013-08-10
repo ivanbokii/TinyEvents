@@ -3,8 +3,10 @@ templates = $.fn.tinyEventsModules.templates
 pickers = $.fn.tinyEventsModules.pickers
 
 class Calendar
-  constructor: (@element) ->
+  constructor: (@element, @handlers) ->
     @engine = new CalendarEngine
+    @quickMonthPicker = new pickers.Month()
+    @quickYearPicker = new pickers.Year()
 
     #save jQuery selector for convenience
     @jElement = $(@element)
@@ -16,7 +18,11 @@ class Calendar
     @_render()
     @_initHandlers()
 
+    #this line should be removed as a result of refactoring
+    @handlers.onDateChange(@engine.currentDate)
+
   _initHandlers: ->
+    #---shift date-----------------------------------
     @jElement.on('click', 'button.next-month', direction: 'next', 
       @_shiftDate('Month', 1))
     @jElement.on('click', 'button.prev-month', direction: 'prev', 
@@ -27,41 +33,51 @@ class Calendar
     @jElement.on('click', 'button.prev-year', direction: 'prev', 
       @_shiftDate('FullYear', -1))
 
-    @jElement.on('click', '.days li', @_switchDate())
-    @jElement.on('click', '.year', 
-      {
-        element: @element
-        #need to use function because during handler init
-        #it catches current month value and
-        #uses it on every call
-        currentYear: => @engine.currentYear
-        callback: @_switchYear
-      }, pickers.year.show)
+    #---switch date-----------------------------------
+    @jElement.on('click', '.days li', ->
+      self = @
+      ->
+        self.switchDate('Date', $(@.text()))
+    )
 
-    @jElement.on('click', '.month', 
-      {
-        element: @element
-        #need to use function because during handler init
-        #it catches current month value and
-        #uses it on every call
-        currentMonth: => @engine.currentMonth
+    @jElement.on('click', '.days li', @_switchDate())
+    @jElement.on('click', '.year', (event) =>
+      @quickYearPicker.show(
+        calendarElement: @element
+        currentData: @engine.currentYear
+        callback: @_switchYear
+      )
+
+      event.stopPropagation()
+    )
+
+    @jElement.on('click', '.month', (event) => 
+      @quickMonthPicker.show(
+        calendarElement: @element
+        currentData: @engine.currentMonth
         callback: @_switchMonth
-      }, pickers.month.show)
+      )
+
+      event.stopPropagation()
+    )
 
   _render: ->
     #todo ivanbokii optimize rendering - right
-    #now the whole template rerenders
+    #now the whole template rerenders on every change
     renderedTemplate = @template(
       days: @engine.daysInCurrentMonth,
       month: @engine.currentMonth, 
       year: @engine.currentYear,
       day: @engine.currentDay
     )
-    @jElement.html(renderedTemplate)
+
+    @jElement.find('.tiny-events .calendar').remove()
+    @jElement.find('.tiny-events').append(renderedTemplate)
 
   _shiftDate: (intervalName, amountOfInveral) ->
     =>
       @engine.shiftDate(intervalName, amountOfInveral)
+      @handlers.onDateChange(@engine.currentDate)
       @_render()
 
   _switchDate: ->
@@ -69,18 +85,18 @@ class Calendar
     ->
       day = parseInt($(@).text())
       self.engine.switchDay(day)
+      self.handlers.onDateChange(self.engine.currentDate)
       self._render()
 
   _switchMonth: (month) =>
     @engine.switchMonth(month)
+    @handlers.onDateChange(@engine.currentDate)
     @._render()
 
   _switchYear: (year) =>
     @engine.switchYear(year)
+    @handlers.onDateChange(@engine.currentDate)
     @._render()
-
-  _showQuickYearPicker: ->
-    alert('fuck')
 
 class CalendarEngine
   constructor: ->
@@ -103,16 +119,19 @@ class CalendarEngine
     
     @_initCurrentDateVariables()
 
-  switchDay: (day) ->
-    @currentDate.setDate(day)
-    @_initCurrentDateVariables()
+  switchDate: (intervalName, newValue) ->
+    @currentDate["set#{intervalName}"](newValue)
 
-  switchMonth: (month) ->
-    @currentDate.setMonth(month)
-    @_initCurrentDateVariables()
+  # switchDay: (day) ->
+  #   @currentDate.setDate(day)
+  #   @_initCurrentDateVariables()
 
-  switchYear: (year) ->
-    @currentDate.setFullYear(year)
-    @_initCurrentDateVariables()
+  # switchMonth: (month) ->
+  #   @currentDate.setMonth(month)
+  #   @_initCurrentDateVariables()
+
+  # switchYear: (year) ->
+  #   @currentDate.setFullYear(year)
+  #   @_initCurrentDateVariables()
 
 $.fn.tinyEventsModules.Calendar = Calendar

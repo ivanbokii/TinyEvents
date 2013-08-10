@@ -15,8 +15,31 @@
 
     <script>
       $(function() {
+        var events = [
+          {
+            title: 'Finn'
+            , description: 'The Human'
+            , time: Date.now()
+          }
+        , {
+            title: 'Jake'
+            , description: 'The Dog'
+            , time: (new Date()).setMonth(2)
+          }
+        , {
+            title: 'Adventure'
+            , description: 'Time'
+            , time: Date.now()
+          }
+        , {
+            title: 'Freddy'
+            , description: 'The Cruger'
+            , time: (new Date).setYear(2012)
+          }
+        ]
+
         $("#element").tinyEvents({
-          // propertyName: "a custom value"
+          events: events
         });
       });
     </script>
