@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"sort",
+				"sortBy"
+			],
+			[
+				"temp",
+				"tempTime"
+			],
+			[
+				"_swimo",
+				"_switchMonth"
+			],
+			[
 				"curren",
 				"currentMonth"
 			],
@@ -119,15 +131,15 @@
 			"file": "demo/index.html",
 			"settings":
 			{
-				"buffer_size": 677,
+				"buffer_size": 1214,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "src/quick-month-picker.coffee",
+			"file": "src/quick-picker.coffee",
 			"settings":
 			{
-				"buffer_size": 1960,
+				"buffer_size": 1512,
 				"line_ending": "Unix"
 			}
 		},
@@ -140,10 +152,34 @@
 			}
 		},
 		{
+			"file": "src/quick-month-picker.coffee",
+			"settings":
+			{
+				"buffer_size": 517,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/calendar.coffee",
+			"settings":
+			{
+				"buffer_size": 3749,
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "demo/css/index.css",
 			"settings":
 			{
 				"buffer_size": 360,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/tinyEvents.coffee",
+			"settings":
+			{
+				"buffer_size": 1569,
 				"line_ending": "Unix"
 			}
 		},
@@ -159,7 +195,7 @@
 			"file": "Gruntfile.js",
 			"settings":
 			{
-				"buffer_size": 2142,
+				"buffer_size": 2256,
 				"line_ending": "Unix"
 			}
 		},
@@ -172,18 +208,26 @@
 			}
 		},
 		{
-			"file": "src/calendar.coffee",
+			"file": "src/templates.coffee",
 			"settings":
 			{
-				"buffer_size": 3226,
+				"buffer_size": 2413,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "src/quick-year-picker.coffee",
+			"file": "src/events.coffee",
 			"settings":
 			{
-				"buffer_size": 1906,
+				"buffer_size": 1603,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/testuser/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+			"settings":
+			{
+				"buffer_size": 474,
 				"line_ending": "Unix"
 			}
 		},
@@ -196,18 +240,10 @@
 			}
 		},
 		{
-			"file": "src/tinyEvents.coffee",
+			"file": "src/quick-year-picker.coffee",
 			"settings":
 			{
-				"buffer_size": 1507,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/templates.coffee",
-			"settings":
-			{
-				"buffer_size": 1782,
+				"buffer_size": 486,
 				"line_ending": "Unix"
 			}
 		}
@@ -221,6 +257,10 @@
 			[
 				"user",
 				"Preferences: Settings - User"
+			],
+			[
+				"defa",
+				"Preferences: Settings - Default"
 			],
 			[
 				"settings",
@@ -303,9 +343,14 @@
 	},
 	"file_history":
 	[
+		"/Volumes/osx/Breaking Bad Season 5/Breaking Bad S05E11.srt",
+		"/Users/testuser/coding/project_red/tiny_events/.gitignore",
+		"/Users/testuser/coding/project_red/tiny_events/node_modules/grunt-contrib-jshint/node_modules/jshint/tests/stable/unit/fixtures/ignored.js",
 		"/Users/testuser/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
-		"/Users/testuser/coding/project_red/tiny_events/dist/tinyEvents.js",
 		"/Users/testuser/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/Users/testuser/coding/project_red/tiny_events/dist/tinyEvents.js",
+		"/Users/testuser/coding/project_red/tiny_events/src/events.coffee",
+		"/Users/testuser/coding/project_red/tiny_events/src/quick-year-picker.coffee",
 		"/Users/testuser/coding/project_red/tiny_events/demo/css/index.css",
 		"/Users/testuser/coding/project_red/tiny_events/src/global.coffee",
 		"/Users/testuser/coding/project_red/tiny_events/dist/tinyEvents.min.js",
@@ -354,6 +399,24 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"title",
+			"e",
+			"self",
+			"continue->",
+			"catnap",
+			"template",
+			"renderedTemplate",
+			"log",
+			"jElement",
+			"switchDay",
+			"years",
+			"removeQui",
+			"triggerElementSelector",
+			"_initHandlers",
+			"calendarElement",
+			"element",
+			"_getOffest",
+			"callback",
 			"Date()",
 			"month",
 			"newMonth",
@@ -457,7 +520,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -466,20 +529,21 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 677,
+						"buffer_size": 1214,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								622,
-								622
+								522,
+								522
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
@@ -490,27 +554,29 @@
 				},
 				{
 					"buffer": 1,
-					"file": "src/quick-month-picker.coffee",
+					"file": "src/quick-picker.coffee",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1960,
+						"buffer_size": 1512,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1686,
-								1686
+								696,
+								696
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage"
+							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 934.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -544,6 +610,64 @@
 				},
 				{
 					"buffer": 3,
+					"file": "src/quick-month-picker.coffee",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 517,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								326,
+								326
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "src/calendar.coffee",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3749,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								507,
+								507
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
 					"file": "demo/css/index.css",
 					"semi_transient": false,
 					"settings":
@@ -561,7 +685,9 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/CSS/CSS.tmLanguage"
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -570,7 +696,36 @@
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 6,
+					"file": "src/tinyEvents.coffee",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1569,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								904,
+								904
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
 					"file": ".gitignore",
 					"semi_transient": false,
 					"settings":
@@ -588,6 +743,7 @@
 						],
 						"settings":
 						{
+							"history_list_is_closing": true,
 							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
@@ -597,35 +753,36 @@
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 8,
 					"file": "Gruntfile.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2142,
+						"buffer_size": 2256,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1551,
-								1555
+								736,
+								736
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 766.0,
+						"translation.y": 551.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 9,
 					"file": "package.json",
 					"semi_transient": false,
 					"settings":
@@ -652,55 +809,22 @@
 						"zoom_level": 1.0
 					},
 					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 1,
-			"sheets":
-			[
+				},
 				{
-					"buffer": 7,
+					"buffer": 4,
 					"file": "src/calendar.coffee",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3226,
+						"buffer_size": 3749,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2393,
-								2393
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 1634.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "src/quick-year-picker.coffee",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1906,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								126,
-								126
+								1892,
+								1892
 							]
 						],
 						"settings":
@@ -710,13 +834,163 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 381.0,
+						"translation.y": 334.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 9,
+					"buffer": 6,
+					"file": "src/tinyEvents.coffee",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1569,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								974,
+								974
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "src/templates.coffee",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2413,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1239,
+								1239
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "src/events.coffee",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1603,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								602,
+								602
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "/Users/testuser/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 474,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								421,
+								421
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 10,
+					"file": "src/templates.coffee",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2413,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1288,
+								1288
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 13,
 					"file": "src/utils.coffee",
 					"semi_transient": false,
 					"settings":
@@ -743,56 +1017,147 @@
 					"type": "text"
 				},
 				{
-					"buffer": 10,
-					"file": "src/tinyEvents.coffee",
+					"buffer": 14,
+					"file": "src/quick-year-picker.coffee",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1507,
+						"buffer_size": 486,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								468,
-								468
+								479,
+								479
+							]
+						],
+						"settings":
+						{
+							"history_list_is_closing": true,
+							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "src/quick-month-picker.coffee",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 517,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								517,
+								517
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage",
+							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "src/calendar.coffee",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3749,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1045,
+								1045
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 128.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 11,
-					"file": "src/templates.coffee",
+					"file": "src/events.coffee",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1782,
+						"buffer_size": 1603,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1582,
-								1582
+								306,
+								306
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage"
+							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 0,
+					"file": "demo/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1214,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								643,
+								643
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -828,7 +1193,7 @@
 		"cols":
 		[
 			0.0,
-			0.472077377479,
+			0.5,
 			1.0
 		],
 		"rows":
@@ -856,6 +1221,118 @@
 			[
 				"templ",
 				"src/templates.coffee"
+			],
+			[
+				"indexhtml",
+				"demo/index.html"
+			],
+			[
+				"cale",
+				"src/calendar.coffee"
+			],
+			[
+				"calen",
+				"src/calendar.coffee"
+			],
+			[
+				"events",
+				"src/events.coffee"
+			],
+			[
+				"index",
+				"demo/index.html"
+			],
+			[
+				"templa",
+				"src/templates.coffee"
+			],
+			[
+				"template",
+				"src/templates.coffee"
+			],
+			[
+				"ignore",
+				".gitignore"
+			],
+			[
+				"calendar",
+				"src/calendar.coffee"
+			],
+			[
+				"tincoffe",
+				"src/tinyEvents.coffee"
+			],
+			[
+				"tinye",
+				"dist/tinyEvents.js"
+			],
+			[
+				"ind",
+				"demo/index.html"
+			],
+			[
+				"tiny",
+				"src/tinyEvents.coffee"
+			],
+			[
+				"even",
+				"src/events.coffee"
+			],
+			[
+				"event",
+				"src/events.coffee"
+			],
+			[
+				"temp",
+				"src/templates.coffee"
+			],
+			[
+				"calend",
+				"src/calendar.coffee"
+			],
+			[
+				"tmepl",
+				"src/templates.coffee"
+			],
+			[
+				"calenda",
+				"src/calendar.coffee"
+			],
+			[
+				"tin",
+				"src/tinyEvents.coffee"
+			],
+			[
+				"tinycoff",
+				"src/tinyEvents.coffee"
+			],
+			[
+				"tinyeven",
+				"dist/tinyEvents.js"
+			],
+			[
+				"quikye",
+				"src/quick-year-picker.coffee"
+			],
+			[
+				"quickmo",
+				"src/quick-month-picker.coffee"
+			],
+			[
+				"gru",
+				"Gruntfile.js"
+			],
+			[
+				"gurn",
+				"Gruntfile.js"
+			],
+			[
+				"cal",
+				"src/calendar.coffee"
+			],
+			[
+				"quickpy",
+				"src/quick-year-picker.coffee"
 			],
 			[
 				"grunt",
@@ -963,7 +1440,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 206.0,
+	"side_bar_width": 203.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

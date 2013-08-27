@@ -2,3 +2,5 @@
 bower_components
 dist
 node_modules
+tiny_events.sublime-project
+tiny_events.sublime-workspace

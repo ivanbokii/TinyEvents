@@ -18,8 +18,8 @@ class Calendar
     @_render()
     @_initHandlers()
 
-    #this line should be removed as a result of refactoring
-    @handlers.onDateChange(@engine.currentDate)
+    #set date to today
+    @_switchDate(new Date)
 
   _initHandlers: ->
     #---shift date-----------------------------------
@@ -34,18 +34,17 @@ class Calendar
       @_shiftDate('FullYear', -1))
 
     #---switch date-----------------------------------
-    @jElement.on('click', '.days li', ->
+    @jElement.on('click', '.days li', do =>
       self = @
       ->
-        self.switchDate('Date', $(@.text()))
+        self._switchDate('Date', $(@).text())
     )
 
-    @jElement.on('click', '.days li', @_switchDate())
     @jElement.on('click', '.year', (event) =>
       @quickYearPicker.show(
         calendarElement: @element
         currentData: @engine.currentYear
-        callback: @_switchYear
+        callback: (year) => @_switchDate('FullYear', year)
       )
 
       event.stopPropagation()
@@ -55,11 +54,12 @@ class Calendar
       @quickMonthPicker.show(
         calendarElement: @element
         currentData: @engine.currentMonth
-        callback: @_switchMonth
+        callback: (month) => @_switchDate('Month', month)
       )
 
       event.stopPropagation()
     )
+    #-------------------------------------------------
 
   _render: ->
     #todo ivanbokii optimize rendering - right
@@ -71,32 +71,27 @@ class Calendar
       day: @engine.currentDay
     )
 
+    #clear clendar's html and then render
     @jElement.find('.tiny-events .calendar').remove()
-    @jElement.find('.tiny-events').append(renderedTemplate)
+    @jElement.find('.tiny-events .events').before(renderedTemplate)
 
+  #Handler. Switches date by intervals (equal one)
+  #@intervalName - string, can be Date, Month, FullYear
+  #@amountOfInterval is 1 by default
   _shiftDate: (intervalName, amountOfInveral) ->
     =>
       @engine.shiftDate(intervalName, amountOfInveral)
       @handlers.onDateChange(@engine.currentDate)
       @_render()
 
-  _switchDate: ->
-    self = @
-    ->
-      day = parseInt($(@).text())
-      self.engine.switchDay(day)
-      self.handlers.onDateChange(self.engine.currentDate)
-      self._render()
-
-  _switchMonth: (month) =>
-    @engine.switchMonth(month)
+  #Handler. Changes date.
+  #@intervalName - string, can be Date, Month, FullYear
+  #@newDate is a new value of intervalName
+  _switchDate: (intervalName, newDate) ->
+    @engine.switchDate(intervalName, newDate)
     @handlers.onDateChange(@engine.currentDate)
-    @._render()
+    @_render()
 
-  _switchYear: (year) =>
-    @engine.switchYear(year)
-    @handlers.onDateChange(@engine.currentDate)
-    @._render()
 
 class CalendarEngine
   constructor: ->
@@ -120,18 +115,11 @@ class CalendarEngine
     @_initCurrentDateVariables()
 
   switchDate: (intervalName, newValue) ->
-    @currentDate["set#{intervalName}"](newValue)
-
-  # switchDay: (day) ->
-  #   @currentDate.setDate(day)
-  #   @_initCurrentDateVariables()
-
-  # switchMonth: (month) ->
-  #   @currentDate.setMonth(month)
-  #   @_initCurrentDateVariables()
-
-  # switchYear: (year) ->
-  #   @currentDate.setFullYear(year)
-  #   @_initCurrentDateVariables()
+    if Date.prototype.isPrototypeOf(intervalName)
+      @currentDate = intervalName
+    else
+      @currentDate["set#{intervalName}"](newValue)
+    
+    @_initCurrentDateVariables()
 
 $.fn.tinyEventsModules.Calendar = Calendar

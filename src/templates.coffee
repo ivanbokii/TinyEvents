@@ -17,9 +17,19 @@ templates =
               </div>"
 
   events: "<div class='events'> \
+            <button class='title'>title</button> \
+            <button class='time'>time</button> \
+
             <ul> \
               <% _.each(events, function(e) { %> \
-                <li><%= e.title %></li> \
+                <li> \
+                  <%= e.title %> \
+                  <p> \
+                    <%= e.description %> \
+                  </p> \
+                  <% var tempTime = new Date(e.time) %> \
+                  <%= tempTime.getHours() %>:<%= tempTime.getMinutes() %> \
+                </li> \
               <% }) %> \
             </ul> \
           </div>"
