@@ -29,6 +29,17 @@ module.exports = function(grunt) {
       }
     },
 
+    sass: {
+      dist: {
+        // options: {
+        //   includePaths: ['demo/sass']
+        // },
+        files: {
+          "demo/css/index.css": "demo/sass/index.sass"
+        }
+      }
+    },
+
     // Lint definitions
     jshint: {
       files: ["src/tinyEvents.js"],
@@ -55,9 +66,6 @@ module.exports = function(grunt) {
           "dist/tinyEvents.js": ["src/global.coffee"
                                 , "src/templates.coffee"
                                 , "src/utils.coffee"
-                                , "src/quick-picker.coffee"
-                                , "src/quick-month-picker.coffee"
-                                , "src/quick-year-picker.coffee"
                                 , "src/calendar.coffee"
                                 , "src/events.coffee"
                                 , "src/tinyEvents.coffee"]
@@ -66,12 +74,11 @@ module.exports = function(grunt) {
     },
 
     watch: {
-      files: ['src/*.coffee'],
-      tasks: ['coffee']
+      files: ['src/*.coffee', 'demo/sass/*.sass'],
+      tasks: ['coffee', 'sass']
     },
 
     clean: ['src/*.js']
-
   });
 
   grunt.loadNpmTasks("grunt-contrib-concat");
@@ -80,8 +87,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-contrib-coffee");
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-sass');
 
-  grunt.registerTask("default", ["jshint", "uglify"]);
+  grunt.registerTask("default", ["jshint", "uglify", "sass"]);
   grunt.registerTask("travis", ["jshint"]);
+
 
 };

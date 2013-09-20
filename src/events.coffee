@@ -2,12 +2,8 @@ templates = $.fn.tinyEventsModules.templates
 
 class Events
   constructor: (@element, @events) ->
-    @engine = new EventsEngine()
     @jElement = $(@element)
     @template = _.template(templates.events)
-
-    #by default sort events by time
-    @sortBy = 'time'
     
     @_groupEvents()
     @_initHandlers()
@@ -21,6 +17,9 @@ class Events
   _findDateEvents: (date) ->
     dateKey = "#{date.getDate()}/#{date.getMonth()}/#{date.getFullYear()}"
     @groupedEvents[dateKey]
+
+  _initHandlers: ->
+    @jElement.on('click', '.events .has-description', this._expandDescription)
 
   #----------------------------------
 
@@ -37,7 +36,7 @@ class Events
       .value()
 
   _render: (events) ->
-    sortedEvents = @_sort(events)
+    sortedEvents = _.sortBy(events, (e) -> e.time)
 
     renderedTemplate = @template(
       events: sortedEvents
@@ -46,25 +45,13 @@ class Events
     $('.tiny-events .events').remove()
     $('.tiny-events').append(renderedTemplate)
 
-  _rerender: ->
-    @onDateChange(@currentDate)
-
-  _sort: (events) ->
-    if @sortBy is 'time'
-      _.sortBy(events, (e) -> e.time)
-    else
-      _.sortBy(events, (e) -> e.title)
-  
-  _initHandlers: ->
-    @jElement.on('click', '.events .title', => 
-      @sortBy = 'title'
-      @_rerender()
-    )
-    @jElement.on('click', '.events .time', => 
-      @sortBy = 'time'
-      @_rerender()
-    )
-
-class EventsEngine
+  _expandDescription: ->
+    # $(this).children('.description').animate(
+    #   height: '80px'
+    # )
+    $(this).children('.description').animate(
+      height: 'toggle'
+      opacity: 'toggle'
+    );
 
 $.fn.tinyEventsModules.Events = Events

@@ -2,60 +2,62 @@ templates =
   tinyEvents: "<div class='tiny-events'></div>"
 
   calendar: "<div class='calendar'> \
-                <button class='prev-month'>prev month</button> \
-                <button class='next-month'>next month</button> \
+                <div class='current'> \
+                  <div class='year'> \
+                    <img class='prev' src='images/blue_left.png'> \
+                    <span> <%= year %> </span> \
+                    <img class='next' src='images/blue_right.png'> \
+                  </div> \
 
-                <button class='prev-year'>prev year</button> \
-                <button class='next-year'>next year</button> \
-                
-                <h1 class='year'>Year: <%= year %> </h1> \
-                <h2 class='month'>Month: <%= month %> </h2> \
-                <h2>Day: <%= day %> </h2> \
-                <ul class='days'> \
-                  <% _.chain(_.range(1, days + 1)).each(function(day) { %> <li> <%= day %> </li> <% }); %> \
-                </ul> \
+                  <span class='date'><%= day %></span> \
+                  <br>
+                  <span class='weekday'>Wednesday</span> \
+                </div> \
+
+                <div class='all'> \
+                  <div class='month'> \
+                    <img class='prev' src='images/white_left.png'> \
+                    <span><%= month %></span> \
+                    <img class='next' src='images/white_right.png'> \
+                  </div> \
+
+                  <table> \
+                    <% for (var i = 1; i <= days; i++) { %> \
+                      <% if ((i - 1) % 7 === 0) { %> \
+                        <tr> \
+                      <% } %> \
+
+                      <td> <%= i %> </td> \
+
+                      <% if (i % 7 === 0) { %> \
+                        </tr> \
+                      <% } %> \
+                    <% } %> \
+                  </table> \
+                </div> \
               </div>"
 
   events: "<div class='events'> \
-            <button class='title'>title</button> \
-            <button class='time'>time</button> \
+            <div> \
+              <span class='time'>18:23</span> \
+              <p class='title'> Here is a good description of the fucked up shit. Here is a good description of the fucked up shit. Here is a good description of the fucked up shit. </p> \
+            </div> \
 
-            <ul> \
-              <% _.each(events, function(e) { %> \
-                <li> \
-                  <%= e.title %> \
-                  <p> \
-                    <%= e.description %> \
-                  </p> \
-                  <% var tempTime = new Date(e.time) %> \
-                  <%= tempTime.getHours() %>:<%= tempTime.getMinutes() %> \
-                </li> \
-              <% }) %> \
-            </ul> \
+            <div class='has-description'> \
+              <span class='time'>12:00</span> \
+              <p class='title'> Karl stole corales from Karla </p> \
+              <p class='description'> \
+                Ahis is a total disaster when you understand that \
+                you are very different from your friends, event \C8EAF5 81B4D3
+                the closest ones. Sudden feel of loneliness is \
+                inevitable. \
+              </p> \
+            </div> \
+
+            <div class='last'> \
+              <span class='time'>08:42</span> \
+              <p class='title'> Strange formation in your eye </p> \
+            </div> \
           </div>"
-
-  quickMonthPicker: "<div class='quick-month-picker'> \
-                      <select> \
-                        <% _.each(data, function(m, i) { %> \
-                          <% if(i+1 == current) { %> \
-                            <option selected='selected' value='<%= i %>'><%= m %> </option> \
-                          <% } else { %> \
-                            <option value='<%= i %>'><%= m %> </option> \
-                          <% } %> \
-                        <% }) %> \
-                      </select> \
-                    </div>"
-
-  quickYearPicker: "<div class='quick-year-picker'> \
-                      <select> \
-                        <% _.each(data, function(m) { %> \
-                          <% if(m == current) { %> \
-                            <option selected='selected'><%= m %> </option> \
-                          <% } else { %> \
-                            <option><%= m %> </option> \
-                          <% } %> \
-                        <% }) %> \
-                      </select> \
-                    </div>"
 
 $.fn.tinyEventsModules.templates = templates

@@ -1,30 +1,78 @@
-.calendar .days li {
-  width: 15px;
-  cursor: pointer;
-}
-
-.month {
-  cursor: pointer;
-}
-
-.year {
-  cursor: pointer;
-}
-
-.quick-month-picker {
-  width: 200px;
-  height: 30px;
-  display: none;
-
-  position: absolute;
-  border: 1px solid red;
-}
-
-.quick-year-picker {
-  width: 200px;
-  height: 30px;
-  display: none;
-
-  position: absolute;
-  border: 1px solid red;
-}
+.tiny-events {
+  width: 600px; }
+  .tiny-events .calendar {
+    overflow: hidden; }
+    .tiny-events .calendar .current {
+      font-family: "Century Gothic";
+      color: #0070b4;
+      width: 260px;
+      height: 260px;
+      padding: 20px;
+      float: left;
+      text-align: center; }
+      .tiny-events .calendar .current .year {
+        font-size: 24px; }
+        .tiny-events .calendar .current .year span {
+          padding: 0 40px 0 40px; }
+        .tiny-events .calendar .current .year img {
+          vertical-align: middle; }
+      .tiny-events .calendar .current .date {
+        font-size: 144px; }
+      .tiny-events .calendar .current .weekday {
+        font-size: 36px; }
+    .tiny-events .calendar .all {
+      font-family: "Century Gothic";
+      color: white;
+      background-color: #0070b4;
+      width: 260px;
+      height: 260px;
+      padding: 20px;
+      float: right;
+      text-align: center; }
+      .tiny-events .calendar .all .month {
+        font-size: 24px;
+        text-transform: uppercase;
+        display: table-row; }
+        .tiny-events .calendar .all .month span {
+          display: table-cell;
+          width: 230px; }
+        .tiny-events .calendar .all .month img {
+          vertical-align: middle; }
+      .tiny-events .calendar .all table {
+        width: 260px;
+        padding-top: 30px;
+        font-size: 21px; }
+        .tiny-events .calendar .all table td {
+          padding-top: 8px; }
+  .tiny-events .events {
+    width: 600px;
+    color: #0070b4; }
+    .tiny-events .events div {
+      font-family: "Century Gothic";
+      padding: 20px;
+      overflow: hidden;
+      border-bottom: 1px solid #d6eefc; }
+      .tiny-events .events div span {
+        padding-top: 1px;
+        font-size: 21px;
+        display: block;
+        float: left; }
+      .tiny-events .events div p.title {
+        margin: 0px;
+        font-size: 18px;
+        float: right;
+        width: 480px;
+        line-height: 28px;
+        padding-bottom: 5px; }
+      .tiny-events .events div p.description {
+        -webkit-margin-before: 0px;
+        -webkit-margin-after: 0px;
+        font-size: 14px;
+        padding-left: 81px;
+        clear: both;
+        line-height: 20px;
+        display: none; }
+    .tiny-events .events div.last {
+      border-bottom: none; }
+    .tiny-events .events div.has-description:hover {
+      background-color: #edf9fd; }

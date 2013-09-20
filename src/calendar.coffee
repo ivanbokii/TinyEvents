@@ -1,12 +1,12 @@
 utils = $.fn.tinyEventsModules.utils
 templates = $.fn.tinyEventsModules.templates
-pickers = $.fn.tinyEventsModules.pickers
 
 class Calendar
+  monthNames = [ "January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December" ]
+
   constructor: (@element, @handlers) ->
     @engine = new CalendarEngine
-    @quickMonthPicker = new pickers.Month()
-    @quickYearPicker = new pickers.Year()
 
     #save jQuery selector for convenience
     @jElement = $(@element)
@@ -23,41 +23,21 @@ class Calendar
 
   _initHandlers: ->
     #---shift date-----------------------------------
-    @jElement.on('click', 'button.next-month', direction: 'next', 
+    @jElement.on('click', '.month img.next', direction: 'next', 
       @_shiftDate('Month', 1))
-    @jElement.on('click', 'button.prev-month', direction: 'prev', 
+    @jElement.on('click', '.month img.prev', direction: 'prev', 
       @_shiftDate('Month', -1))
 
-    @jElement.on('click', 'button.next-year', direction: 'next', 
+    @jElement.on('click', '.year img.next', direction: 'next', 
       @_shiftDate('FullYear', 1))
-    @jElement.on('click', 'button.prev-year', direction: 'prev', 
+    @jElement.on('click', '.year img.prev', direction: 'prev', 
       @_shiftDate('FullYear', -1))
 
     #---switch date-----------------------------------
-    @jElement.on('click', '.days li', do =>
+    @jElement.on('click', '.all table td', do =>
       self = @
       ->
         self._switchDate('Date', $(@).text())
-    )
-
-    @jElement.on('click', '.year', (event) =>
-      @quickYearPicker.show(
-        calendarElement: @element
-        currentData: @engine.currentYear
-        callback: (year) => @_switchDate('FullYear', year)
-      )
-
-      event.stopPropagation()
-    )
-
-    @jElement.on('click', '.month', (event) => 
-      @quickMonthPicker.show(
-        calendarElement: @element
-        currentData: @engine.currentMonth
-        callback: (month) => @_switchDate('Month', month)
-      )
-
-      event.stopPropagation()
     )
     #-------------------------------------------------
 
@@ -66,7 +46,7 @@ class Calendar
     #now the whole template rerenders on every change
     renderedTemplate = @template(
       days: @engine.daysInCurrentMonth,
-      month: @engine.currentMonth, 
+      month: monthNames[@engine.currentMonth],
       year: @engine.currentYear,
       day: @engine.currentDay
     )
@@ -97,12 +77,10 @@ class CalendarEngine
   constructor: ->
     @currentDate = new Date()
     @_initCurrentDateVariables()
-    
-    window.engine = @
 
   _initCurrentDateVariables: ->
     #add one because months starts with 0
-    @currentMonth = @currentDate.getMonth() + 1
+    @currentMonth = @currentDate.getMonth()
     @currentYear = @currentDate.getFullYear()
     @currentDay = @currentDate.getDate()
     @daysInCurrentMonth = utils.date.daysInMonth(@currentYear, @currentMonth)
