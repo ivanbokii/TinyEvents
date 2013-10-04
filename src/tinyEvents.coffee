@@ -22,23 +22,65 @@ do ($ = jQuery, window, document) ->
       @options = $.extend {}, defaults, options
       @_defaults = defaults
       @_name = pluginName
-      @init()
+      @_init()
 
-    init: ->
+    _init: ->
       #todo ivanbokii combine handlers
       @_render()
 
-      @events = new Events(@element, @options.events)
-
       #events handlers for calendar
-      handlers = {}
-      handlers.onDateChange = @events.onDateChange
+      @_initHandlers()
+      @handlers.run('onInit')
 
-      @calendar = new Calendar(@element, handlers)
+      container = $(@element).find('.tiny-events')
+      @events = new Events(container, @options.events, @handlers)
+      @calendar = new Calendar(container, @options.events, @handlers)
 
-    #renders template for the plugin
+      @handlers.run('onInitComplete')
+      $(@element).data('tinyEvents', @)
+
+    #renders carcass for the calendar
     _render: ->
       $(templates.tinyEvents).appendTo($(@element))
+
+    _initHandlers: ->
+      @handlers =
+        events:
+          onDateChange: [@options.handlers.onDateChange]
+          onDayChange: [@options.handlers.onDayChange]
+          onMonthChange: [@options.handlers.onMonthChange]
+          onYearChange: [@options.handlers.onYearChange]
+          onInit: [@options.handlers.onInit]
+          onInitComplete: [@options.handlers.onInitComplete]
+          onEventsAdd: []
+          onEventsRemove: []
+        ,
+        add: (name, handler) ->
+          unless _.isUndefined(name) then @events[name].push handler
+        ,
+        remove: (name, handler) ->
+          @events[name] = _.without(@events[name], handler)
+        ,
+        run: (name, params) ->
+          @events[name] = _.compact(@events[name])
+          _.each(@events[name], (e) -> e(params))
+
+  #----public api---------------------------------------------------------------
+    getSelectedDate: ->
+      @calendar.getCurrentDate()
+
+    getDateEvents: (date) ->
+      @events.getDateEvents(date)
+
+    getAllEvents: ->
+      @events.getAllEvents()
+
+    addEvent: (event) ->
+      @events.addEvent(event)
+
+    removeEvent: (event) ->
+      @events.removeEvent(event)
+  #-----------------------------------------------------------------------------
 
   # A really lightweight plugin wrapper around the constructor,
   # preventing against multiple instantiations

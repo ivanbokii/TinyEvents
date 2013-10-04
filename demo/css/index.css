@@ -1,5 +1,8 @@
 .tiny-events {
-  width: 600px; }
+  width: 600px;
+  -webkit-box-shadow: 1px 1px 5px rgba(50, 50, 50, 0.75);
+  -moz-box-shadow: 1px 1px 5px rgba(50, 50, 50, 0.75);
+  box-shadow: 1px 1px 5px rgba(50, 50, 50, 0.75); }
   .tiny-events .calendar {
     overflow: hidden; }
     .tiny-events .calendar .current {
@@ -16,6 +19,8 @@
           padding: 0 40px 0 40px; }
         .tiny-events .calendar .current .year img {
           vertical-align: middle; }
+        .tiny-events .calendar .current .year .prev, .tiny-events .calendar .current .year .next {
+          cursor: pointer; }
       .tiny-events .calendar .current .date {
         font-size: 144px; }
       .tiny-events .calendar .current .weekday {
@@ -38,20 +43,40 @@
           width: 230px; }
         .tiny-events .calendar .all .month img {
           vertical-align: middle; }
+        .tiny-events .calendar .all .month .prev, .tiny-events .calendar .all .month .next {
+          cursor: pointer; }
       .tiny-events .calendar .all table {
         width: 260px;
         padding-top: 30px;
         font-size: 21px; }
         .tiny-events .calendar .all table td {
           padding-top: 8px; }
+          .tiny-events .calendar .all table td:hover {
+            color: #cbe2f0;
+            cursor: pointer; }
+          .tiny-events .calendar .all table td.currentDate {
+            border-bottom: 1px solid white; }
+          .tiny-events .calendar .all table td.hasEvents {
+            background-image: url(../images/events_mark.png);
+            background-position: right 5px;
+            background-repeat: no-repeat; }
   .tiny-events .events {
     width: 600px;
     color: #0070b4; }
     .tiny-events .events div {
+      position: relative;
       font-family: "Century Gothic";
       padding: 20px;
       overflow: hidden;
       border-bottom: 1px solid #d6eefc; }
+      .tiny-events .events div img.event-control {
+        position: absolute;
+        right: 30px;
+        cursor: pointer; }
+        .tiny-events .events div img.event-control.expand {
+          top: 28px; }
+        .tiny-events .events div img.event-control.collapse {
+          top: 32px; }
       .tiny-events .events div span {
         padding-top: 1px;
         font-size: 21px;
@@ -60,13 +85,13 @@
       .tiny-events .events div p.title {
         margin: 0px;
         font-size: 18px;
-        float: right;
-        width: 480px;
+        float: left;
+        width: 440px;
+        padding-left: 27px;
         line-height: 28px;
         padding-bottom: 5px; }
       .tiny-events .events div p.description {
-        -webkit-margin-before: 0px;
-        -webkit-margin-after: 0px;
+        margin: 0px;
         font-size: 14px;
         padding-left: 81px;
         clear: both;
@@ -74,5 +99,3 @@
         display: none; }
     .tiny-events .events div.last {
       border-bottom: none; }
-    .tiny-events .events div.has-description:hover {
-      background-color: #edf9fd; }

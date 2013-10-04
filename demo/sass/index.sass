@@ -1,5 +1,8 @@
 .tiny-events {
   width: 600px;
+  -webkit-box-shadow: 1px 1px 5px rgba(50, 50, 50, 0.75);
+  -moz-box-shadow:    1px 1px 5px rgba(50, 50, 50, 0.75);
+  box-shadow:         1px 1px 5px rgba(50, 50, 50, 0.75);
 
   .calendar {
     overflow: hidden;
@@ -25,6 +28,10 @@
 
         img {
           vertical-align: middle;
+        }
+
+        .prev, .next {
+          cursor: pointer;
         }
       }
 
@@ -63,6 +70,10 @@
         img {
           vertical-align: middle;
         }
+
+        .prev, .next {
+          cursor: pointer;
+        }
       }
 
       table {
@@ -72,6 +83,21 @@
 
         td {
           padding-top: 8px;
+
+          &:hover {
+            color: #CBE2F0;
+            cursor: pointer;
+          }
+
+          &.currentDate {
+            border-bottom: 1px solid white;
+          }
+
+          &.hasEvents {
+            background-image: url(../images/events_mark.png);
+            background-position: right 5px;
+            background-repeat: no-repeat;
+          }
         }
       }
     }
@@ -82,10 +108,24 @@
     color: #0070B4;
 
     div {
+      position: relative;
       font-family: "Century Gothic";
       padding: 20px;
       overflow: hidden;
       border-bottom: 1px solid #D6EEFC;
+
+      img.event-control {
+        position: absolute;
+        right: 30px;
+        cursor: pointer;
+
+        &.expand {
+          top: 28px;
+        }
+        &.collapse {
+          top: 32px;
+        }
+      }
 
       span {
         padding-top: 1px;
@@ -97,16 +137,16 @@
       p.title {
         margin: 0px;
         font-size: 18px;
-        float: right;
-        width: 480px;
+        float: left;
+        width: 440px;
+        padding-left: 27px;
         line-height: 28px;
         padding-bottom: 5px
       }
 
       p.description {
-        -webkit-margin-before: 0px;
-        -webkit-margin-after: 0px;
-        
+        margin: 0px;
+
         font-size: 14px;
         padding-left: 81px;
         clear: both;
@@ -118,10 +158,6 @@
 
     div.last {
       border-bottom: none;
-    }
-
-    div.has-description:hover {
-      background-color: #EDF9FD;
     }
   }
 }

@@ -4,92 +4,197 @@ templates = $.fn.tinyEventsModules.templates
 class Calendar
   monthNames = [ "January", "February", "March", "April", "May", "June",
       "July", "August", "September", "October", "November", "December" ]
+  weekDaysNames = [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
+      "Saturday" ]
+  animationSpeed = 200
 
-  constructor: (@element, @handlers) ->
+  constructor: (@element, @events, @handlers) ->
     @engine = new CalendarEngine
 
-    #save jQuery selector for convenience
-    @jElement = $(@element)
+    @_initialRender()
+    @_initActionsHandlers()
+    @handlers.run('onDateChange', @engine.currentDate)
 
-    #precompile template
-    @template = _.template(templates.calendar)
-    
-    #setup initial state
-    @_render()
-    @_initHandlers()
+  #---public api----------------------------------------------------------------
+  getSelectedDate: ->
+    @engine.currentDate
+  #-----------------------------------------------------------------------------
 
-    #set date to today
-    @_switchDate(new Date)
+  _initialRender: ->
+    @_renderCalendar()
+    @_renderYear()
+    @_renderDateAndDay()
+    @_renderMonth()
+    @_renderMonthDates()
 
-  _initHandlers: ->
-    #---shift date-----------------------------------
-    @jElement.on('click', '.month img.next', direction: 'next', 
-      @_shiftDate('Month', 1))
-    @jElement.on('click', '.month img.prev', direction: 'prev', 
-      @_shiftDate('Month', -1))
+  _renderCalendar: ->
+    template = _.template(templates.calendar)
+    @element.find('.calendar').append(template())
 
-    @jElement.on('click', '.year img.next', direction: 'next', 
-      @_shiftDate('FullYear', 1))
-    @jElement.on('click', '.year img.prev', direction: 'prev', 
-      @_shiftDate('FullYear', -1))
+  _renderYear: ->
+    year = @engine.currentYear
 
-    #---switch date-----------------------------------
-    @jElement.on('click', '.all table td', do =>
-      self = @
-      ->
-        self._switchDate('Date', $(@).text())
-    )
-    #-------------------------------------------------
+    #here animation will go
+    @element.find('.year span').hide()
+    @element.find('.year span').text(year).fadeIn(animationSpeed)
 
-  _render: ->
-    #todo ivanbokii optimize rendering - right
-    #now the whole template rerenders on every change
-    renderedTemplate = @template(
-      days: @engine.daysInCurrentMonth,
-      month: monthNames[@engine.currentMonth],
-      year: @engine.currentYear,
-      day: @engine.currentDay
-    )
+  _renderDateAndDay: ->
+    day = @engine.currentDay
 
-    #clear clendar's html and then render
-    @jElement.find('.tiny-events .calendar').remove()
-    @jElement.find('.tiny-events .events').before(renderedTemplate)
+    #here animation will go
+    @element.find('.date').hide()
+    @element.find('.weekday').hide()
 
-  #Handler. Switches date by intervals (equal one)
-  #@intervalName - string, can be Date, Month, FullYear
-  #@amountOfInterval is 1 by default
-  _shiftDate: (intervalName, amountOfInveral) ->
-    =>
-      @engine.shiftDate(intervalName, amountOfInveral)
-      @handlers.onDateChange(@engine.currentDate)
-      @_render()
+    @element.find('.date').text(day).fadeIn(animationSpeed)
+    @element.find('.weekday').text(weekDaysNames[@engine.currentWeekDay]).fadeIn(animationSpeed)
 
-  #Handler. Changes date.
-  #@intervalName - string, can be Date, Month, FullYear
-  #@newDate is a new value of intervalName
-  _switchDate: (intervalName, newDate) ->
-    @engine.switchDate(intervalName, newDate)
-    @handlers.onDateChange(@engine.currentDate)
-    @_render()
+  _renderMonth: ->
+    month = monthNames[@engine.currentMonth]
 
+    #here animation will go
+    @element.find('.month span').hide()
+    @element.find('.month span').text(month).fadeIn(animationSpeed)
+
+  _renderMonthDates: ->
+    days = @engine.daysInCurrentMonth
+    currentDay = @engine.currentDay
+    template = _.template(templates.monthDates)
+
+    #here we need to mark dates that have events
+    dates = _.chain(@events)
+    .pluck('time')
+    .map((t) -> new Date(t))
+    .filter((t) => t.getFullYear() is @engine.currentYear and t.getMonth() is @engine.currentMonth)
+    .map((t) -> t.getDate())
+    .uniq()
+    .value()
+    #-------------------------------------------
+
+    #here animation will go
+    @element.find('.month + table').remove()
+
+    renderedTemplate = $(template(days: days, current: currentDay, eventDates: dates)).hide()
+    @element.find('.month').after(renderedTemplate)
+    renderedTemplate.fadeIn()
+
+  _initActionsHandlers: ->
+    @element.on('click', '.month img.next', 'next', @_switchMonth)
+    @element.on('click', '.month img.prev', 'prev', @_switchMonth)
+    @element.on('click', '.year img.next', 'next', @_switchYear)
+    @element.on('click', '.year img.prev', 'prev', @_switchYear)
+    @element.on('click', '.all table td', @_switchDate)
+
+    @handlers.add('onEventsAdd', @_addEvent)
+    @handlers.add('onEventsRemove', @_removeEvent)
+
+  _addEvent: (event) =>
+    eventDate = new Date(event.time)
+
+    #we don't need to mark any dates in the calendar because event's
+    #month is not the currently selected month
+    if eventDate.getMonth() isnt @engine.currentMonth then return
+
+    #mark date in the calendar
+    date = eventDate.getDate()
+    dateElement = $(@element).find('.calendar table td')[date - 1]
+
+    unless $(dateElement).hasClass('hasEvents')
+      $(dateElement).addClass('hasEvents')
+
+  _removeEvent: (data) =>
+    #do no unmark event if date has more events
+    if data.length > 0 then return
+
+    eventDate = new Date(data.event.time)
+
+    #we don't need to mark any dates in the calendar because event's
+    #month is not the currently selected month
+    if eventDate.getMonth() isnt @engine.currentMonth then return
+
+    #mark date in the calendar
+    date = eventDate.getDate()
+    dateElement = $(@element).find('.calendar table td')[date - 1]
+
+    if $(dateElement).hasClass('hasEvents')
+      $(dateElement).removeClass('hasEvents')
+
+  _switchMonth: (e) =>
+    direction = if e.data is 'next' then 1 else -1
+
+    @engine.shiftDate('Month', direction)
+
+    @_renderYear() if @engine.yearChanged
+    @_renderMonth()
+    @_renderMonthDates()
+    @_renderDateAndDay() if @engine.dayChanged or @engine.currentWeekDayChange
+
+    @handlers.run('onDateChange', @engine.currentDate)
+    @handlers.run('onMonthChange', @engine.currentMonth)
+
+  _switchYear: (e) =>
+    direction = if e.data is 'next' then 1 else -1
+
+    @engine.shiftDate('FullYear', direction)
+    @_renderYear()
+    @_renderMonth() if @engine.monthChanged
+    @_renderMonthDates()
+    @_renderDateAndDay() if @engine.dayChanged or @engine.currentWeekDayChange
+
+    @handlers.run('onDateChange', @engine.currentDate)
+    @handlers.run('onYearChange', @engine.currentYear)
+
+  _switchDate: (e) =>
+    date = $(e.target).text()
+
+    @engine.switchDate('Date', date)
+
+    #highlight a current selected date
+    @element.find('td').removeClass('currentDate')
+    $(e.target).addClass('currentDate')
+
+    @_renderDateAndDay()
+
+    @handlers.run('onDateChange', @engine.currentDate)
+    @handlers.run('onDayChange', @engine.currentWeekDay)
 
 class CalendarEngine
   constructor: ->
     @currentDate = new Date()
     @_initCurrentDateVariables()
+    window.currentDate = @currentDate
 
   _initCurrentDateVariables: ->
-    #add one because months starts with 0
+    @monthChanged = @currentMonth isnt @currentDate.getMonth()
     @currentMonth = @currentDate.getMonth()
+
+    @yearChanged = @currentYear isnt @currentDate.getFullYear()
     @currentYear = @currentDate.getFullYear()
+
+    @dayChanged = @currentDay isnt @currentDate.getDate()
     @currentDay = @currentDate.getDate()
+
+    @currentWeekDayChange = @currentWeekDay isnt @currentDate.getDay()
+    @currentWeekDay = @currentDate.getDay()
+
+    @daysInMonthChanged = @daysInCurrentMonth isnt utils.date.daysInMonth(@currentYear, @currentMonth)
     @daysInCurrentMonth = utils.date.daysInMonth(@currentYear, @currentMonth)
 
   #interval name can be date, month, year
   shiftDate: (intervalName, amountOfTime) ->
-    @currentDate["set#{intervalName}"](
-      @currentDate["get#{intervalName}"]() + amountOfTime)
-    
+
+    #small hack to make dates switching behave correct during month switch------
+    #in this case we switch to closest biggest existing month' date
+    if intervalName is 'Month'
+      currentDate = @currentDate.getDate()
+      monthToSwitch = @currentDate.getMonth() + amountOfTime
+      tempDate = new Date(@currentDate.getFullYear(), monthToSwitch)
+      daysInMonth = utils.date.daysInMonth(tempDate.getFullYear(), tempDate.getMonth())
+
+      if currentDate > daysInMonth then @currentDate.setDate(daysInMonth)
+    #---------------------------------------------------------------------------
+
+    @currentDate["set#{intervalName}"](@currentDate["get#{intervalName}"]() + amountOfTime)
+
     @_initCurrentDateVariables()
 
   switchDate: (intervalName, newValue) ->
@@ -97,7 +202,7 @@ class CalendarEngine
       @currentDate = intervalName
     else
       @currentDate["set#{intervalName}"](newValue)
-    
+
     @_initCurrentDateVariables()
 
 $.fn.tinyEventsModules.Calendar = Calendar

@@ -24,6 +24,11 @@
             title: 'Jake'
             , description: 'The Dog'
             , time: (new Date()).setMonth(2)
+          },
+          {
+            title: 'Ugly'
+            , description: "Paleo skateboard velit twee, trust fund next level McSweeney's eiusmod ad ullamco. Hella master cleanse quis blog try-hard enim, authentic vegan dolore."
+            , time: (new Date()).setDate(10)
           }
         , {
             title: 'Adventure'
@@ -36,9 +41,17 @@
             , time: (new Date).setYear(2012)
           }
         ];
-        
+
         $("#element").tinyEvents({
-          events: events
+          events: events,
+          handlers: {
+            onDateChange: function (e) { console.log('date change: ', e) },
+            onYearChange: function (e) { console.log('year change: ', e) },
+            onMonthChange: function (e) { console.log('month change: ', e) },
+            onDayChange: function (e) { console.log('day change: ', e) },
+            onInit: function () { console.log('on init') },
+            onInitComplete: function () { console.log('on init complete') },
+          }
         });
       });
     </script>
