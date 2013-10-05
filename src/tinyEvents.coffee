@@ -75,11 +75,21 @@ do ($ = jQuery, window, document) ->
     getAllEvents: ->
       @events.getAllEvents()
 
-    addEvent: (event) ->
-      @events.addEvent(event)
+    addEvents: (events) ->
+      @events.addEvents(events)
 
-    removeEvent: (event) ->
-      @events.removeEvent(event)
+    removeEvents: (events) ->
+      @events.removeEvents(events)
+
+    resetEvents: (events) ->
+      @events.resetEvents(events)
+      @calendar.resetEvents(events)
+
+    subscribe: (eventName, handler) ->
+      @handlers.add(eventName, handler)
+
+    unsubscirbe: (eventName, handler) ->
+      @handlers.remove(eventName, handler)
   #-----------------------------------------------------------------------------
 
   # A really lightweight plugin wrapper around the constructor,

@@ -18,6 +18,10 @@ class Calendar
   #---public api----------------------------------------------------------------
   getSelectedDate: ->
     @engine.currentDate
+
+  resetEvents: (events) ->
+    @events = events
+    @_renderMonthDates()
   #-----------------------------------------------------------------------------
 
   _initialRender: ->
@@ -84,39 +88,27 @@ class Calendar
     @element.on('click', '.year img.prev', 'prev', @_switchYear)
     @element.on('click', '.all table td', @_switchDate)
 
-    @handlers.add('onEventsAdd', @_addEvent)
-    @handlers.add('onEventsRemove', @_removeEvent)
+    @handlers.add('onEventsAdd', @_addEvents)
+    @handlers.add('onEventsRemove', @_removeEvents)
 
-  _addEvent: (event) =>
-    eventDate = new Date(event.time)
+  _addEvents: (events) =>
+    @events = @events.concat(events)
+    @_renderMonthDates()
 
-    #we don't need to mark any dates in the calendar because event's
-    #month is not the currently selected month
-    if eventDate.getMonth() isnt @engine.currentMonth then return
+  #find events in inner collection that should
+  #be removed and redraw months dates to update marks
+  _removeEvents: (events) =>
+    titlesToRemove = _.pluck(events, 'title')
 
-    #mark date in the calendar
-    date = eventDate.getDate()
-    dateElement = $(@element).find('.calendar table td')[date - 1]
+    eventsToRemove = _.filter(@events, (event) ->
+      _.contains(titlesToRemove, event.title)
+    )
 
-    unless $(dateElement).hasClass('hasEvents')
-      $(dateElement).addClass('hasEvents')
-
-  _removeEvent: (data) =>
-    #do no unmark event if date has more events
-    if data.length > 0 then return
-
-    eventDate = new Date(data.event.time)
-
-    #we don't need to mark any dates in the calendar because event's
-    #month is not the currently selected month
-    if eventDate.getMonth() isnt @engine.currentMonth then return
-
-    #mark date in the calendar
-    date = eventDate.getDate()
-    dateElement = $(@element).find('.calendar table td')[date - 1]
-
-    if $(dateElement).hasClass('hasEvents')
-      $(dateElement).removeClass('hasEvents')
+    #because of the special way _.without should be called we need
+    #to construct args before the actual call
+    args = [@events].concat(eventsToRemove)
+    @events = _.without.apply(_, args)
+    @_renderMonthDates()
 
   _switchMonth: (e) =>
     direction = if e.data is 'next' then 1 else -1

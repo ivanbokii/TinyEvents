@@ -18,33 +18,39 @@ class Events
   getAllEvents: ->
     @groupedEvents
 
-  addEvent: (event) ->
-    @events.push(event)
+  addEvents: (events) ->
+    @events = @events.concat(events)
     @_groupEvents()
 
     #check whether event is for the current date and if yes - rerender events
     #panel
-    currentKey = utils.date.getKey(@currentDate)
-    eventKey = utils.date.getKey(event.time)
+    shouldRender = not _.every(events, (event) ->
+      currentKey = utils.date.getKey(@currentDate)
+      eventKey = utils.date.getKey(event.time)
 
-    if currentKey is eventKey
-      @_render(@_findDateEvents(@currentDate))
-
-    @handlers.run('onEventsAdd', event)
-
-  removeEvent: (event) ->
-    _.each(_.keys(@groupedEvents), (key) =>
-      if _.contains(@groupedEvents[key], event)
-        @groupedEvents[key] = _.without(@groupedEvents[key], event)
-
-        #check whether event is for the current date and if yes - rerender events
-        #panel
-        currentKey = utils.date.getKey(@currentDate)
-        eventKey = utils.date.getKey(new Date(event.time))
-
-        if currentKey is eventKey then @_render(@_findDateEvents(@currentDate))
-        @handlers.run('onEventsRemove', {event: event, length: @groupedEvents[key].length})
+      currentKey isnt eventKey
     )
+    @_render(@_findDateEvents(@currentDate)) if shouldRender
+    @handlers.run('onEventsAdd', events)
+
+  removeEvents: (events) ->
+    shouldRemove = false
+    _.each(events, (event) =>
+      key = utils.date.getKey(new Date(event.time))
+
+      if _.isUndefined(@groupedEvents[key]) and not _.contains(@groupedEvents[key], event) then return
+      @groupedEvents[key] = _.without(@groupedEvents[key], event)
+      shouldRemove = true
+    )
+
+    if shouldRemove
+      @_render(@_findDateEvents(@currentDate))
+      @handlers.run('onEventsRemove', events)
+
+  resetEvents: (events) ->
+    @events = events
+    @_groupEvents()
+    @_render(@events)
   #-----------------------------------------------------------------------------
 
   #---events handlers----------------
