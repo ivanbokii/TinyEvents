@@ -89,7 +89,7 @@ var selectedDate = tinyEvents.getSelectedDate();
 - onInitComplete - happens in the end of the plugin initialization
 
 ####Methods:
-- getSelectedDate() - returns selecte date
+- getSelectedDate() - returns selected date
 - getDateEvents(date) - returns an array of events for a specific date
 - getAllEvents() - returns all events grouped by date
 - addEvents([event1, event2, ..eventN]) - adds events to the calendar
