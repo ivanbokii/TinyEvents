@@ -1,7 +1,7 @@
 TinyEvents
 ==========
 
-Calendar jQuery plugin with events support
+Calendar jQuery plugin with events support. You can see live version ![here](http://tinyevents.ivanbokii.com/).
 
 
 ![alt tag](http://i41.tinypic.com/k4utj7.png)
